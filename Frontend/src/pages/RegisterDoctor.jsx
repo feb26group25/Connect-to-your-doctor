@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 const DEPARTMENTS = [
   'Cardiology', 'Dermatology', 'Orthopedics',
@@ -17,7 +16,6 @@ export default function RegisterDoctor() {
   const [msg, setMsg] = useState("")
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })

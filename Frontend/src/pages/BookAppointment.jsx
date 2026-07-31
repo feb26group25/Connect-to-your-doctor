@@ -25,8 +25,8 @@ export default function BookAppointment() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        patientid: user.userid,
-        doctorid: doctor.doctorid,
+        patientid: user?.userId || user?.userid,
+        doctorid: doctor?.doctorId || doctor?.doctorid,
         appointmentdate: form.appointmentdate,
         appointmenttime: form.appointmenttime,
         reason: form.reason
@@ -42,6 +42,9 @@ export default function BookAppointment() {
       })
   }
 
+  const doctorDisplayName = doctor?.doctorName || `Dr. ${doctor?.firstname || ''} ${doctor?.lastname || ''}`.trim();
+  const hospitalDisplayName = doctor?.hospital?.hospitalName || doctor?.hospitalname || '—';
+
   return (
     <div>
       <button className="btn btn-outline-secondary mb-3"
@@ -51,9 +54,9 @@ export default function BookAppointment() {
 
       {doctor && (
         <div className="alert alert-info mb-4">
-          <b>Doctor:</b> Dr. {doctor.firstname} {doctor.lastname} &nbsp;|&nbsp;
+          <b>Doctor:</b> {doctorDisplayName} &nbsp;|&nbsp;
           <b>Specialization:</b> {doctor.specialization} &nbsp;|&nbsp;
-          <b>Hospital:</b> {doctor.hospitalname}
+          <b>Hospital:</b> {hospitalDisplayName}
         </div>
       )}
 

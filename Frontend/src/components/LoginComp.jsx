@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react"
+import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginSuccess } from "../redux/authSlice"
 import { useNavigate } from "react-router-dom"
@@ -17,38 +17,31 @@ export default function LoginComp() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username: username, password: password })
         };
-        fetch("http://localhost:3000/login",reqoptions)
+        fetch("http://localhost:3000/login", reqoptions)
         .then(resp => {
             if(resp.status === 200){
                 setMessage("Successful")
                 return resp.json();
             }
-            else if(resp.status === 404)
+            else {
                 setMessage("Invalid Username or Password")
-                return {}
+                return null;
+            }
         })
-        // .then(resp => resp.json())
         .then(data => {
+            if (!data || !data.user) return;
             console.log(JSON.stringify(data));
             //redux state modify
-            dispatch(loginSuccess({user: data.user , token: data.token}))
-            if(data.user.role === 1){ //admin
-                //navigate admin dashboard
-                navigate("/admin");
+            dispatch(loginSuccess({user: data.user, token: data.token}))
+            if(data.user.role === 1 || data.user.role === "Admin"){ //admin
+                navigate("/admin-dashboard/appointments");
             }
-            else if(data.user.role === 2){ //user
-                //navigate to user dashboard
-                navigate("/user");
+            else if(data.user.role === 2 || data.user.role === "Patient"){ //user
+                navigate("/user-dashboard/search");
             }
-
-
-            // if (data.success){
-            //     setMessage("Incorrect password or username")
-            // }
-            // else{
-            //     setMessage("sucessful");
-            //     console.log("Response:", data);
-            // }
+            else if(data.user.role === 3 || data.user.role === "Doctor"){ //doctor
+                navigate("/doctor-dashboard/appointments");
+            }
         })
         .catch(err =>{ 
             setMessage("Incorrect password or username")

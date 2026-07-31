@@ -41,7 +41,7 @@ export default function LoginComp() {
           userId: data.userId,
           name: data.name,
           email: data.email,
-          role: data.role, // "Admin" | "Doctor" | "Patient"
+          role: data.role,
         };
         dispatch(loginSuccess({ user, token: data.token }));
         setLoading(false);
@@ -57,48 +57,53 @@ export default function LoginComp() {
   };
 
   return (
-    <div style={{minHeight:'100vh', background:'#f0f4ff', display:'flex', flexDirection:'column'}}>
+    <div style={{minHeight:'100vh', background:'var(--dark-gradient)', display:'flex', flexDirection:'column'}}>
 
       {/* NAVBAR */}
-      <nav className="navbar px-4 shadow-sm"
-        style={{background:'linear-gradient(135deg, #1a3c8f, #2563eb)'}}>
-        <NavLink to="/" className="navbar-brand fw-bold text-white fs-4">ConnectDoc</NavLink>
+      <nav className="navbar px-4 shadow-sm" style={{borderBottom:'1px solid rgba(255,255,255,0.1)'}}>
+        <div className="d-flex align-items-center gap-2">
+          <div className="rounded-circle text-white d-inline-flex align-items-center justify-content-center fw-bold fs-5"
+            style={{width:'38px', height:'38px', background:'var(--blue-gradient)'}}>
+            +
+          </div>
+          <NavLink to="/" className="navbar-brand fw-bold text-white fs-4 mb-0">ConnectDoc</NavLink>
+        </div>
       </nav>
 
       {/* CARD */}
-      <div className="d-flex align-items-center justify-content-center flex-grow-1 py-5">
-        <div className="card border-0 shadow p-5"
-          style={{width:'100%', maxWidth:'420px', borderRadius:'16px'}}>
+      <div className="d-flex align-items-center justify-content-center flex-grow-1 py-5 px-3">
+        <div className="card glass-card border-0 shadow-lg p-5"
+          style={{width:'100%', maxWidth:'420px', background:'rgba(255,255,255,0.95)', backdropFilter:'blur(20px)'}}>
 
           <div className="text-center mb-4">
-            <div className="rounded-circle text-white d-inline-flex align-items-center justify-content-center fw-bold mb-3 fs-4"
-              style={{width:'56px', height:'56px', background:'linear-gradient(135deg, #1a3c8f, #2563eb)'}}>
+            <div className="rounded-circle text-white d-inline-flex align-items-center justify-content-center fw-bold mb-3 fs-4 shadow-sm"
+              style={{width:'60px', height:'60px', background:'var(--blue-gradient)'}}>
               +
             </div>
-            <h4 className="fw-bold mb-1">Welcome Back</h4>
+            <h4 className="fw-bold mb-1" style={{color:'var(--navy-dark)'}}>Welcome Back</h4>
             <p className="text-muted small">Sign in to your ConnectDoc account</p>
           </div>
 
-          {msg && <div className="alert alert-danger py-2 text-center small">{msg}</div>}
+          {msg && <div className="alert alert-danger py-2 text-center small rounded-3">{msg}</div>}
 
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label className="form-label fw-semibold small">Email</label>
+              <label className="form-label fw-semibold small text-dark">Email Address</label>
               <input
                 type="email"
                 className="form-control py-2"
-                placeholder="Enter your email"
+                placeholder="enter@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required />
             </div>
             <div className="mb-4">
-              <label className="form-label fw-semibold small">Password</label>
+              <label className="form-label fw-semibold small text-dark">Password</label>
               <div className="input-group">
                 <input
                   type={showPw ? "text" : "password"}
                   className="form-control py-2"
-                  placeholder="Enter your password"
+                  placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value.trim())}
                   required />
@@ -112,8 +117,7 @@ export default function LoginComp() {
             </div>
             <button
               type="submit"
-              className="btn w-100 py-2 fw-bold text-white"
-              style={{background:'linear-gradient(135deg, #1a3c8f, #2563eb)', borderRadius:'10px'}}
+              className="btn btn-cyan-gradient w-100 py-2.5 fw-bold text-white fs-6"
               disabled={loading}>
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
@@ -121,7 +125,7 @@ export default function LoginComp() {
 
           <p className="text-center text-muted small mt-4 mb-0">
             Don't have an account?{' '}
-            <NavLink to="/register" className="fw-bold" style={{color:'#1a3c8f'}}>
+            <NavLink to="/register" className="fw-bold" style={{color:'var(--accent-blue)'}}>
               Register here
             </NavLink>
           </p>

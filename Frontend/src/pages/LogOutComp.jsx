@@ -13,6 +13,6 @@ export default function LogoutComp() {
     useEffect(() => {
         dispatch(logout())
         navigate("/")
-    }, []);
+    }, [dispatch, navigate]);
 
 }
