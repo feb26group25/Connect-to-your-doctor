@@ -1,16 +1,9 @@
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\entity\User.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\security\JwtUtil.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\UserServiceApplication.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\config\SecurityConfig.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\service\AuthService.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\dto\AuthResponse.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\dto\LoginRequest.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\exception\GlobalExceptionHandler.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\security\CustomUserDetailsService.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\dto\RegisterRequest.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\security\JwtAuthFilter.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\exception\ApiException.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\repository\UserRepository.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\entity\Role.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\repository\RoleRepository.java
-C:\Users\Eshwar\Desktop\Main Project\Connect-to-your-doctor\Backend\Java-server\user-service\src\main\java\com\connectdoc\userservice\controller\AuthController.java
+C:\Users\Eshwar\Desktop\cdac project new\user-service\src\main\java\com\connectdoc\user\repository\UserRepository.java
+C:\Users\Eshwar\Desktop\cdac project new\user-service\src\main\java\com\connectdoc\user\controller\UserController.java
+C:\Users\Eshwar\Desktop\cdac project new\user-service\src\main\java\com\connectdoc\user\security\JwtUtil.java
+C:\Users\Eshwar\Desktop\cdac project new\user-service\src\main\java\com\connectdoc\user\repository\RoleRepository.java
+C:\Users\Eshwar\Desktop\cdac project new\user-service\src\main\java\com\connectdoc\user\UserServiceApplication.java
+C:\Users\Eshwar\Desktop\cdac project new\user-service\src\main\java\com\connectdoc\user\model\Role.java
+C:\Users\Eshwar\Desktop\cdac project new\user-service\src\main\java\com\connectdoc\user\controller\AuthController.java
+C:\Users\Eshwar\Desktop\cdac project new\user-service\src\main\java\com\connectdoc\user\dto\UserDTO.java
+C:\Users\Eshwar\Desktop\cdac project new\user-service\src\main\java\com\connectdoc\user\model\User.java

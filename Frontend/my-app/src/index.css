@@ -1,0 +1,179 @@
+/* Pinterest/Dribbble Inspired Medical Glassmorphism Design System */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Brand Palette */
+  --navy-dark: #0f172a;
+  --navy-surface: #1e293b;
+  --cyan-accent: #06b6d4;
+  --teal-accent: #14b8a6;
+  --blue-primary: #2563eb;
+  --blue-gradient: linear-gradient(135deg, #06b6d4 0%, #2563eb 50%, #1d4ed8 100%);
+  --dark-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f172a 100%);
+  --glass-gradient: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.75) 100%);
+
+  /* UI Tokens */
+  --bg-main: #f8fafc;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --border-glass: rgba(226, 232, 240, 0.8);
+  --border-glow: rgba(6, 182, 212, 0.3);
+  
+  --text-primary: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+
+  /* Shadows & Glass */
+  --glass-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.02);
+  --glass-hover-shadow: 0 20px 40px -10px rgba(6, 182, 212, 0.2), 0 10px 20px -5px rgba(37, 99, 235, 0.15);
+  --backdrop-blur: blur(16px);
+
+  --font-family-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-family-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-body);
+  background-color: var(--bg-main);
+  color: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+  border: none !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: var(--font-family-heading) !important;
+  letter-spacing: -0.02em;
+}
+
+/* Pinterest Glassmorphism Cards */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--border-glass) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-glow) !important;
+  box-shadow: var(--glass-hover-shadow);
+}
+
+/* Gradient Action Button */
+.btn-cyan-gradient {
+  background: var(--blue-gradient);
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+  transition: all 0.25s ease;
+}
+
+.btn-cyan-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(6, 182, 212, 0.45);
+  opacity: 0.96;
+}
+
+/* Custom Status Pills */
+.badge-status {
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.badge-pending {
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #ffedd5;
+}
+
+.badge-accepted {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #d1fae5;
+}
+
+.badge-completed {
+  background: #ecfeff;
+  color: #0891b2;
+  border: 1px solid #cffaff;
+}
+
+.badge-rejected, .badge-cancelled {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fee2e2;
+}
+
+/* Glowing Form Controls */
+.form-control, .form-select {
+  border-radius: 10px !important;
+  border: 1px solid var(--border-glass) !important;
+  padding: 10px 14px !important;
+  transition: all 0.2s ease !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--cyan-accent) !important;
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15) !important;
+}
+
+/* Mobile Responsive Utility Rules */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column !important;
+  }
+  
+  .dashboard-sidebar {
+    min-width: 100% !important;
+    width: 100% !important;
+    min-height: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .dashboard-sidebar .nav {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 4px;
+  }
+
+  .dashboard-sidebar .nav-link {
+    white-space: nowrap !important;
+  }
+
+  .hero-heading {
+    font-size: 2.1rem !important;
+  }
+  
+  .hero-img-container {
+    margin-top: 2rem;
+  }
+}
