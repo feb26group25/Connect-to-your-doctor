@@ -1,0 +1,14 @@
+com\connectdoc\doctor\dto\RemoteUser.class
+com\connectdoc\doctor\client\AppointmentServiceClient.class
+com\connectdoc\doctor\repository\DoctorRepository.class
+com\connectdoc\doctor\controller\DoctorController.class
+com\connectdoc\doctor\repository\AvailabilityRepository.class
+com\connectdoc\doctor\config\RestTemplateConfig.class
+com\connectdoc\doctor\DoctorServiceApplication.class
+com\connectdoc\doctor\repository\HospitalRepository.class
+com\connectdoc\doctor\controller\HospitalController.class
+com\connectdoc\doctor\model\Doctor.class
+com\connectdoc\doctor\model\Hospital.class
+com\connectdoc\doctor\model\Availability.class
+com\connectdoc\doctor\security\JwtUtil.class
+com\connectdoc\doctor\client\UserServiceClient.class
