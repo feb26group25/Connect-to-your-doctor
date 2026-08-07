@@ -93,8 +93,9 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(err);
         }
 
-        Role role = roleRepository.findByRoleName(roleName)
-                .orElseGet(() -> roleRepository.save(new Role(null, roleName)));
+        Role role = roleRepository.findByRoleNameIgnoreCase(roleName.trim())
+                .or(() -> roleRepository.findByRoleName(roleName.trim()))
+                .orElseGet(() -> roleRepository.save(new Role(null, roleName.trim())));
 
         User user = new User();
         user.setName(name);

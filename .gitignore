@@ -1,10 +1,12 @@
-# Build directories & target files
-Backend/Java-server/target/
-Backend/Java-server/apache-maven-3.9.6/
-Frontend/dist/
-Frontend/node_modules/
+# Maven target folders
+target/
+**/target/
+*.class
 
-# Logs & Environment
+# Node / frontend
+node_modules/
+dist/
+.vite/
+
+# Logs
 *.log
-.DS_Store
-.env
