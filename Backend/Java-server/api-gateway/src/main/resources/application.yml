@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # user-service - auth + user profiles
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/auth/**,/api/users/**
+
+        # doctor-service - doctors, hospitals, availability, admin doctor registration
+        - id: doctor-service
+          uri: lb://doctor-service
+          predicates:
+            - Path=/api/doctors/**,/api/hospitals/**
+
+        # appointment-service - deliberately no shared "/api" prefix here,
+        # matching the actual controller mappings as they exist today.
+        - id: appointment-service
+          uri: lb://appointment-service
+          predicates:
+            - Path=/appointment,/appointment/**,/appointments,/appointments/**,/prescription,/prescription/**,/feedback,/feedback/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+# Shared JWT signing secret across all services
+jwt:
+  secret: ConnectToYourDoctorSuperSecretKeyForJWTSigning2026ChangeMe
+
+# NOTE ON CORS: deliberately NOT configuring CORS here at the gateway.
+# Each downstream service already has @CrossOrigin(origins = "*") on its
+# controllers, and Spring Cloud Gateway forwards the Origin header through
+# to them and proxies their response headers back untouched. Adding a
+# second CORS policy here as well would create duplicate
+# Access-Control-Allow-Origin headers, which browsers reject outright.
