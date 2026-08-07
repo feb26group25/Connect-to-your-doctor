@@ -9,17 +9,40 @@ export default function AllUsers() {
     fetch(`${USER_API}/api/users`)
       .then(resp => resp.json())
       .then(data => {
-        if(data.length === 0) setMsg('No users found.')
-        setUsers(data)
+        if (!Array.isArray(data) || data.length === 0) {
+          setMsg('No users found.')
+        }
+        if (Array.isArray(data)) {
+          setUsers(data)
+        }
       })
       .catch(() => setMsg('Could not fetch users.'))
   }, [])
 
-  const getRoleBadge = (roleid) => {
-    if(roleid === 1) return {label:'Admin', bg:'#fdeaea', color:'#a81a1a'}
-    if(roleid === 2) return {label:'Patient', bg:'#e8f4fd', color:'#1a6fa8'}
-    if(roleid === 3) return {label:'Doctor', bg:'#e8fdf4', color:'#1a8a5a'}
-    return {label:'Unknown', bg:'#f0f0f0', color:'#555'}
+  const getRoleBadge = (u) => {
+    const roleName = (u.roleName || u.role || '').toString().trim()
+    const upperRole = roleName.toUpperCase()
+
+    if (upperRole.includes('ADMIN')) {
+      return { label: 'Admin', bg: '#fdeaea', color: '#a81a1a' }
+    }
+    if (upperRole.includes('DOCTOR')) {
+      return { label: 'Doctor', bg: '#e8fdf4', color: '#1a8a5a' }
+    }
+    if (upperRole.includes('PATIENT')) {
+      return { label: 'Patient', bg: '#e8f4fd', color: '#1a6fa8' }
+    }
+
+    const nameStr = (u.name || u.firstname || '').toString().trim()
+    if (/^dr[\s\.]/i.test(nameStr) || /^doctor[\s\.]/i.test(nameStr)) {
+      return { label: 'Doctor', bg: '#e8fdf4', color: '#1a8a5a' }
+    }
+
+    if (roleName) {
+      const formatted = roleName.charAt(0).toUpperCase() + roleName.slice(1).toLowerCase()
+      return { label: formatted, bg: '#f3e8ff', color: '#6b21a8' }
+    }
+    return { label: 'Unknown', bg: '#f0f0f0', color: '#555' }
   }
 
   return (
@@ -52,15 +75,21 @@ export default function AllUsers() {
               </tr>
             </thead>
             <tbody>
-              {users.map(u => {
-                const role = getRoleBadge(u.roleid)
+              {users.map((u, index) => {
+                const role = getRoleBadge(u)
+                const userId = u.userId ?? u.userid ?? u.id ?? '—'
+                const rowKey = u.userId ?? u.userid ?? u.id ?? index
+                const displayName = u.name || (u.firstname ? `${u.firstname} ${u.lastname || ''}`.trim() : '—')
+                const username = u.username || (u.email ? u.email.split('@')[0] : '—')
+                const contact = u.mobileNumber || u.contactnumber || u.mobile || '—'
+
                 return (
-                  <tr key={u.userid}>
-                    <td className="py-3 px-4 text-muted small">{u.userid}</td>
-                    <td className="py-3 fw-semibold">{u.firstname} {u.lastname}</td>
-                    <td className="py-3 text-muted">{u.username}</td>
-                    <td className="py-3 text-muted">{u.email}</td>
-                    <td className="py-3 text-muted">{u.contactnumber || '—'}</td>
+                  <tr key={rowKey}>
+                    <td className="py-3 px-4 text-muted small">{userId}</td>
+                    <td className="py-3 fw-semibold">{displayName}</td>
+                    <td className="py-3 text-muted">{username}</td>
+                    <td className="py-3 text-muted">{u.email || '—'}</td>
+                    <td className="py-3 text-muted">{contact}</td>
                     <td className="py-3">
                       <span className="badge px-3 py-2 fw-semibold small rounded-pill"
                         style={{background:role.bg, color:role.color}}>

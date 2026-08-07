@@ -68,10 +68,11 @@ export default function AllAppointments() {
               </tr>
             </thead>
             <tbody>
-              {appointments.map(a => {
+              {appointments.map((a, index) => {
                 const badge = getBadge(a.status)
+                const keyVal = a.appointmentid ?? a.appointmentId ?? a.id ?? index
                 return (
-                  <tr key={a.appointmentid}>
+                  <tr key={keyVal}>
                     <td className="py-3 px-4 fw-semibold">{a.patientfirst} {a.patientlast}</td>
                     <td className="py-3">Dr. {a.doctorfirst} {a.doctorlast}</td>
                     <td className="py-3 text-muted small">{a.hospitalname}</td>
