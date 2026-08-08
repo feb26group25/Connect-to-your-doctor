@@ -10,3 +10,8 @@ dist/
 
 # Logs
 *.log
+
+# Editor / OS files
+.DS_Store
+.idea/
+.vscode/
